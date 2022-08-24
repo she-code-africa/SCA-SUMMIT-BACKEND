@@ -5,7 +5,7 @@ const { userRegistration } = require("../model/registerUser");
 const { generateOTP } = require("../helper/generateOtp");
 
 // generation of mail transporter and tickek email from the helper folder
-const { mailTransporte, generateEmailTicketTemplate } = require("../helper/mailTransporter");
+const { mailTransporter, generateEmailTicketTemplate } = require("../helper/mailTransporter");
 
 // registering a user handler 
 module.exports.saveUserDetails = async (req, res) => {
@@ -43,12 +43,12 @@ module.exports.saveUserDetails = async (req, res) => {
                     const OTP = generateOTP();
 
                     // invoking nodemail transporter function for sending of email
-                    const newTransporter = mailTransporte();
-                
+                    const newMailTransport = mailTransporter();
+                    
                     // send email  
-                    await newTransporter.sendMail({
+                    await newMailTransport.sendMail({
                 
-                        from: "engineering@shecodeafrica.org",
+                        from: "dummy@gmail.com",
                 
                         to: saveUser.email,
                     
@@ -56,7 +56,7 @@ module.exports.saveUserDetails = async (req, res) => {
                     
                         html: generateEmailTicketTemplate(saveUser.firstName, OTP),
 
-                        replyTo: "engineering@shecodeafrica.org",
+                        replyTo: "dummy@gmail.com",
                 
                     });
     
@@ -64,15 +64,13 @@ module.exports.saveUserDetails = async (req, res) => {
             
                 }
 
-            }
-            
-           
+            }     
         
     } catch (error) {
         
         console.log(error.message);
 
-        res.status(500).json(error)
+        res.status(501).json(error)
 
     }
 

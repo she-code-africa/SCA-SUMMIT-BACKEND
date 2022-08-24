@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-module.exports.mailTransporte = () => nodemailer.createTransport({
+module.exports.mailTransporter = () => nodemailer.createTransport({
 
     service: process.env.SERVICEMAIL,
 
