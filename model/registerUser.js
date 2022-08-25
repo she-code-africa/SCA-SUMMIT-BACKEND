@@ -38,6 +38,16 @@ const usersSchema = new Schema({
             
         trim: true,
 
+    },
+
+    number: {
+
+        type: Number,
+
+        required: true,
+                        
+        trim: true,
+
     }
     
 },{timestamps:true})

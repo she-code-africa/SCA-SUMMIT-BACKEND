@@ -13,7 +13,7 @@ module.exports.saveUserDetails = async (req, res) => {
     try {
 
             // destructing of data
-            const { firstName, lastName, email } = req.body;
+            const { firstName, lastName, email, number } = req.body;
 
             // find an existing user using their email
             const existingUser = await userRegistration.findOne({ email })
@@ -26,7 +26,7 @@ module.exports.saveUserDetails = async (req, res) => {
             } else {
 
                 //save the new user data into the database
-                const saveDetails = new userRegistration({ firstName, lastName, email })
+                const saveDetails = new userRegistration({ firstName, lastName, email,number })
             
                 //save user database 
                 const saveUser = await saveDetails.save();
